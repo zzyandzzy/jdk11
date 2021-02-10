@@ -242,7 +242,6 @@ public class HashMap<K, V> extends AbstractMap<K, V>
      * 0011 1111 1111 1111 1111 1111 1111 1111
      * 31                  15                0
      * 1073741823
-     * Integer最大值是这个数的2倍
      * {@link Integer#MAX_VALUE}
      */
     static final int MAXIMUM_CAPACITY = 1 << 30;

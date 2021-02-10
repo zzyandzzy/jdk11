@@ -64,7 +64,6 @@ public final class Integer extends Number implements Comparable<Integer> {
      * 1000 0000 0000 0000 0000 0000 0000 0000
      * 31                  15                0
      * 2147483648
-     * 最高位为符号位，1位负数，0位正数
      */
     @Native
     public static final int MIN_VALUE = 0x80000000;
@@ -75,7 +74,6 @@ public final class Integer extends Number implements Comparable<Integer> {
      * 0111 1111 1111 1111 1111 1111 1111 1111
      * 31                  15                0
      * 2147483647
-     * 最高位为符号位，1位负数，0位正数
      */
     @Native
     public static final int MAX_VALUE = 0x7fffffff;
