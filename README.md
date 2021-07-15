@@ -54,3 +54,7 @@ make clean && make dist-clean
 # 快速编译jdk
 make jdk
 ```
+
+## 参考
+
+- [写Java这么久，JDK源码编译过没？编译JDK源码踩坑纪实](https://segmentfault.com/a/1190000023251649)
