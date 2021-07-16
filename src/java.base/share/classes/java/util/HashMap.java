@@ -712,7 +712,7 @@ public class HashMap<K, V> extends AbstractMap<K, V>
          */
         if ((tab = table) == null || (n = tab.length) == 0)
             n = (tab = resize()).length;
-        // 如果该处不为空，直接插入！
+        // 如果该处不为空，直接插入！，p在这里赋值
         if ((p = tab[i = (n - 1) & hash]) == null)
             tab[i] = newNode(hash, key, value, null);
         else {// 否则，可能是链表或者二叉树
@@ -720,7 +720,7 @@ public class HashMap<K, V> extends AbstractMap<K, V>
             K k;
             if (p.hash == hash &&
                     ((k = p.key) == key || (key != null && key.equals(k))))
-                e = p;// 如果当前第0个节点和要插入的节点相等，直接替换
+                e = p;// 如果当前第0个节点和要插入节点的key相等，直接替换
             else if (p instanceof TreeNode) // 如果是二叉树🌲
                 e = ((TreeNode<K, V>) p).putTreeVal(this, tab, hash, key, value);
             else {// 否则插入链表最后面
