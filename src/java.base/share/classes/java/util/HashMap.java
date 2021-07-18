@@ -630,6 +630,7 @@ public class HashMap<K, V> extends AbstractMap<K, V>
      */
     public V get(Object key) {
         Node<K, V> e;
+        // 先获取了hash，再获取节点
         return (e = getNode(hash(key), key)) == null ? null : e.value;
     }
 
