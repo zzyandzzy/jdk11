@@ -1,14 +1,14 @@
 # jdk11
 
-# build
-```bash
-# 安装freetype
-brew install freetype
+编译jdk11需要`boot jdk`，也就是另外一个JDK来编译这个JDK...（经典套娃）。
 
-chmod +x ./configure
+- JDK版本必须大于等于`10`。
+- make版本最好是`4.2.1`
+- gcc版本最好gcc-9
 
-./configure --with-debug-level=slowdebug --enable-dtrace --with-jvm-variants=server --with-target-bits=64 --with-num-cores=8 --with-memory-size=16384 --disable-warnings-as-errors --with-freetype=bundled --with-boot-jdk=/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home
-```
+## build
+
+### 参数
 
 --with-debug-level=slowdebug 启用slowdebug级别调试
 
@@ -27,6 +27,82 @@ chmod +x ./configure
 --disable-warnings-as-errors 忽略警告 , mac 使用 xcode 编译, 官方要求加上这个参数.
 
 --with-freetype 设置freetype的路径
+
+### linux
+
+1. 首先安装JDK11
+
+**gentoo**
+
+```bash
+sudo emerge -av dev-java/openjdk freetype
+```
+
+2. 工具链版本
+
+确保make版本是`4.2.1`，不能是`4.3`
+
+```bash
+make -v
+GNU Make 4.2.1
+为 x86_64-pc-linux-gnu 编译
+Copyright (C) 1988-2016 Free Software Foundation, Inc.
+许可证：GPLv3+：GNU 通用公共许可证第 3 版或更新版本<http://gnu.org/licenses/gpl.html>。
+本软件是自由软件：您可以自由修改和重新发布它。
+在法律允许的范围内没有其他保证。
+```
+
+如果执意要在`4.3`编译JDK11请做以下操作。
+
+[修复教程](https://bugs.openjdk.java.net/browse/JDK-8237879)
+
+```c
+diff -r e7c4199e4d32 make/common/MakeBase.gmk
+--- a/make/common/MakeBase.gmk
++++ b/make/common/MakeBase.gmk
+@@ -532,7 +532,9 @@
+               $(info NewVariable $1: >$(strip $($1))<) \
+               $(info OldVariable $1: >$(strip $($1_old))<)) \
+           $(call WriteFile, $1_old:=$(call DoubleDollar,$(call EscapeHash,$($1))), \
+- $(call DependOnVariableFileName, $1, $2))) \
++ $(call DependOnVariableFileName, $1, $2) ) \
++ $(eval $(call DependOnVariableFileName, $1, $2): ) \
++ ) \
+         $(call DependOnVariableFileName, $1, $2) \
+     )
+```
+
+确保gcc版本是gcc-9
+
+```bash
+➜  ~ git:(master) ✗ gcc -v
+使用内建 specs。
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-pc-linux-gnu/9.4.0/lto-wrapper
+目标：x86_64-pc-linux-gnu
+配置为：/var/tmp/portage/sys-devel/gcc-9.4.0/work/gcc-9.4.0/configure --host=x86_64-pc-linux-gnu --build=x86_64-pc-linux-gnu --prefix=/usr --bindir=/usr/x86_64-pc-linux-gnu/gcc-bin/9.4.0 --includedir=/usr/lib/gcc/x86_64-pc-linux-gnu/9.4.0/include --datadir=/usr/share/gcc-data/x86_64-pc-linux-gnu/9.4.0 --mandir=/usr/share/gcc-data/x86_64-pc-linux-gnu/9.4.0/man --infodir=/usr/share/gcc-data/x86_64-pc-linux-gnu/9.4.0/info --with-gxx-include-dir=/usr/lib/gcc/x86_64-pc-linux-gnu/9.4.0/include/g++-v9 --with-python-dir=/share/gcc-data/x86_64-pc-linux-gnu/9.4.0/python --enable-languages=c,c++,fortran --enable-obsolete --enable-secureplt --disable-werror --with-system-zlib --enable-nls --without-included-gettext --enable-checking=release --with-bugurl=https://bugs.gentoo.org/ --with-pkgversion='Gentoo 9.4.0 p1' --disable-esp --enable-libstdcxx-time --enable-shared --enable-threads=posix --enable-__cxa_atexit --enable-clocale=gnu --enable-multilib --with-multilib-list=m32,m64 --disable-fixed-point --enable-targets=all --enable-libgomp --disable-libssp --disable-libada --disable-systemtap --enable-vtable-verify --enable-lto --without-isl --enable-default-pie --enable-default-ssp
+线程模型：posix
+gcc 版本 9.4.0 (Gentoo 9.4.0 p1)
+```
+
+3. 编译
+
+```bash
+./configure --with-debug-level=fastdebug --with-jvm-variants=server --with-target-bits=64 --with-num-cores=8 --with-memory-size=16384 --disable-warnings-as-errors --with-freetype=system --with-boot-jdk=/usr/lib64/openjdk-11
+
+make images
+```
+
+### macOS
+
+```bash
+# 安装freetype
+brew install freetype
+
+chmod +x ./configure
+
+./configure --with-debug-level=slowdebug --enable-dtrace --with-jvm-variants=server --with-target-bits=64 --with-num-cores=8 --with-memory-size=16384 --disable-warnings-as-errors --with-freetype=bundled --with-boot-jdk=/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home
+```
 
 ```bash
 # 编译
