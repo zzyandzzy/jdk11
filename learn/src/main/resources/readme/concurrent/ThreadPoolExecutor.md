@@ -12,7 +12,7 @@
 
 ## 资料
 
-- [测试用例](../../../test/java/cool/zzy/java/util/concurrent/ThreadPoolExecutorTest.java)
+- [测试用例](../../../../test/java/cool/intent/java/util/concurrent/ThreadPoolExecutorTest.java)
 - [源码](../../../../../../src/java.base/share/classes/java/util/concurrent/ThreadPoolExecutor.java)
 
 ## 翻译
@@ -46,7 +46,7 @@ corePoolSize（核心线程数）和maximumPoolSize（最大线程数）： 这�
 - 当corePoolSize（核心线程数）和maximumPoolSize（最大线程数）一样时，你将会得到一个固定大小的线程池。
 - 当maximumPoolSize（最大线程数）设置为一个很大的值，如`Integer#MAX_VALUE`时，这个线程池将会容纳无限的线程。
 
-其他： 默认情况下，所只有当任务提交时，才会创建线程去执行任务，但是可以使用`prestartCoreThread`(启动一个核心线程)和`prestartAllCoreThreads`（启动所有核心线程）来提前创建好线程。
+其他： 默认情况下，只有当任务提交时，才会创建线程去执行任务，但是可以使用`prestartCoreThread`(启动一个核心线程)和`prestartAllCoreThreads`（启动所有核心线程）来提前创建好线程。
 
 创建新的线程： 使用`ThreadFactory`创建一个新的线程，如果没有设置，将会用`Executors.defaultThreadFactory`来创建线程，创建的线程拥有同样的线程组，
 一样的优先级`Thread.NORM_PRIORITY`（默认为5，最小为1，最大为10），和非守护线程状态。当然我们可以提供一个`ThreadFactory`来自己创建线程， 自定义线程的名字等等，对于后续出现bug排除有很大的方便。
@@ -73,5 +73,23 @@ Queuing（等待队列）： 任何BlockingQueue都可以用来传输和保存�
 
 2. Unbounded queues（无界队列）
 
+通常是`LinkedBlockingQueue`，使用无界队列之后，除非系统资源耗尽，否则不会出现任务入队失败的情况。
+
+- 当有任务进来的时候，如果运行的线程数小于corePoolSize（核心线程数），则会创建新的线程运行任务。
+- 如果运行的线程数大于corePoolSize（核心线程数）时，则不会创建新线程运行任务，将会把任务加入队列等待。
+
+无界队列的maximumPoolSize（最大线程数）会失效。所以无界队列适合任务之间没有关联的情况，比如Web Server。
+
 3. Bounded queues（有界队列）
 
+通常是`ArrayBlockingQueue`，当与maximumPoolSize（最大线程数）一起使用时，有助于防止资源耗尽，但可能更难调整和控制。
+使用大的队列和小池可以最大限度地减少CPU使用率、操作系统资源和上下文切换开销，但也可能导致人为的低吞吐量。
+使用小队列通常需要更大的池大小，这使得cpu更繁忙，但可能会遇到不可接受的调度开销，这也会降低吞吐量。
+
+通过测试和查看源码得知有界队列的工作方式：
+
+- 当有任务进来的时候，如果运行的线程数小于corePoolSize（核心线程数），则会创建新的线程运行任务。
+- 如果运行的线程数大于corePoolSize（核心线程数）时，则不会创建新线程运行任务。
+  - 如果队列未满，将会把任务加入队列等待。
+  - 如果队列已满，并且当前运行的线程数 < 非核心线程线程数，则运行一个紧急的非核心线程来执行任务。
+  - 否则执行失败策略
