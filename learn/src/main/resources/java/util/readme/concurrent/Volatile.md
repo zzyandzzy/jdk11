@@ -1,14 +1,14 @@
 # volatile关键字
 
-- [对象布局](./ObjectLayout.md)
-- [轻量级锁CAS](./CompareAndSwap.md)
-- [volatile关键字](./Volatile.md)
-- [synchronized关键字](./Synchronized.md)
-- [锁升级](./LockUpgrade.md)
-- [locks](../../../../../../src/java.base/share/classes/java/util/concurrent/locks)
-  - [AQS](./AQS.md)
-  - [ReentrantLock](./ReentrantLock.md)
-- [ThreadPoolExecutor](./ThreadPoolExecutor.md)
+- [对象布局](ObjectLayout.md)
+- [轻量级锁CAS](CompareAndSwap.md)
+- [volatile关键字](Volatile.md)
+- [synchronized关键字](Synchronized.md)
+- [锁升级](LockUpgrade.md)
+- [locks](../../../../../../../../src/java.base/share/classes/java/util/concurrent/locks)
+  - [AQS](AQS.md)
+  - [ReentrantLock](ReentrantLock.md)
+- [ThreadPoolExecutor](ThreadPoolExecutor.md)
 
 # 资料
 
@@ -37,7 +37,7 @@
 // 指令
 ```
 
-可参考[轻量级锁CAS](./CompareAndSwap.md)和[synchronized关键字](./Synchronized.md)的实现（实现都是lock指令）
+可参考[轻量级锁CAS](CompareAndSwap.md)和[synchronized关键字](Synchronized.md)的实现（实现都是lock指令）
 
 # 原则
 

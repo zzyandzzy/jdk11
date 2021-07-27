@@ -1,14 +1,14 @@
 # synchronized关键字
 
-- [对象布局](./ObjectLayout.md)
-- [轻量级锁CAS](./CompareAndSwap.md)
-- [volatile关键字](./Volatile.md)
-- [synchronized关键字](./Synchronized.md)
-- [锁升级](./LockUpgrade.md)
-- [locks](../../../../../../src/java.base/share/classes/java/util/concurrent/locks)
-  - [AQS](./AQS.md)
-  - [ReentrantLock](./ReentrantLock.md)
-- [ThreadPoolExecutor](./ThreadPoolExecutor.md)
+- [对象布局](ObjectLayout.md)
+- [轻量级锁CAS](CompareAndSwap.md)
+- [volatile关键字](Volatile.md)
+- [synchronized关键字](Synchronized.md)
+- [锁升级](LockUpgrade.md)
+- [locks](../../../../../../../../src/java.base/share/classes/java/util/concurrent/locks)
+  - [AQS](AQS.md)
+  - [ReentrantLock](ReentrantLock.md)
+- [ThreadPoolExecutor](ThreadPoolExecutor.md)
 
 # 资料
 
@@ -42,7 +42,7 @@ Java层
 
 JVM层
 
-加上synchronized关键字的方法或对象的锁会在执行过程中自动升级（参照[锁升级](./LockUpgrade.md)）
+加上synchronized关键字的方法或对象的锁会在执行过程中自动升级（参照[锁升级](LockUpgrade.md)）
 
 汇编层
 
@@ -52,7 +52,7 @@ JVM层
 // 指令
 ```
 
-参照[轻量级锁CAS](./CompareAndSwap.md)
+参照[轻量级锁CAS](CompareAndSwap.md)
 
 # synchronized VS CAS
 

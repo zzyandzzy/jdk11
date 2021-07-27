@@ -1,25 +1,25 @@
 # ReentrantLock
 
-- [对象布局](./ObjectLayout.md)
-- [轻量级锁CAS](./CompareAndSwap.md)
-- [volatile关键字](./Volatile.md)
-- [synchronized关键字](./Synchronized.md)
-- [锁升级](./LockUpgrade.md)
-- [locks](../../../../../../src/java.base/share/classes/java/util/concurrent/locks)
-  - [AQS](./AQS.md)
-  - [ReentrantLock](./ReentrantLock.md)
-- [ThreadPoolExecutor](./ThreadPoolExecutor.md)
+- [对象布局](ObjectLayout.md)
+- [轻量级锁CAS](CompareAndSwap.md)
+- [volatile关键字](Volatile.md)
+- [synchronized关键字](Synchronized.md)
+- [锁升级](LockUpgrade.md)
+- [locks](../../../../../../../../src/java.base/share/classes/java/util/concurrent/locks)
+  - [AQS](AQS.md)
+  - [ReentrantLock](ReentrantLock.md)
+- [ThreadPoolExecutor](ThreadPoolExecutor.md)
 
 # 资料
 
-- [ReentrantLock源码](../../../../../../src/java.base/share/classes/java/util/concurrent/locks/ReentrantLock.java)
+- [ReentrantLock源码](../../../../../../../../src/java.base/share/classes/java/util/concurrent/locks/ReentrantLock.java)
 - [测试用例](../../../test/java/cool/zzy/java/util/concurrent/ReentrantLockTest.java)
 
 可重入锁
 
 ## 类图
 
-![ReentrantLock类图](./static/image/ReentrantLock类图.png)
+![ReentrantLock类图](static/image/ReentrantLock类图.png)
 
 ## 公平锁
 

@@ -1,20 +1,20 @@
 # 锁升级过程
 
-- [对象布局](./ObjectLayout.md)
-- [轻量级锁CAS](./CompareAndSwap.md)
-- [volatile关键字](./Volatile.md)
-- [synchronized关键字](./Synchronized.md)
-- [锁升级](./LockUpgrade.md)
-- [locks](../../../../../../src/java.base/share/classes/java/util/concurrent/locks)
-  - [AQS](./AQS.md)
-  - [ReentrantLock](./ReentrantLock.md)
-- [ThreadPoolExecutor](./ThreadPoolExecutor.md)
+- [对象布局](ObjectLayout.md)
+- [轻量级锁CAS](CompareAndSwap.md)
+- [volatile关键字](Volatile.md)
+- [synchronized关键字](Synchronized.md)
+- [锁升级](LockUpgrade.md)
+- [locks](../../../../../../../../src/java.base/share/classes/java/util/concurrent/locks)
+  - [AQS](AQS.md)
+  - [ReentrantLock](ReentrantLock.md)
+- [ThreadPoolExecutor](ThreadPoolExecutor.md)
 
 # 资料
 
 - [测试用例](../../../test/java/cool/zzy/java/util/concurrent/ObjectLayoutTest.java)
 
-![锁优点和缺点](./static/image/锁的优点和缺点.png)
+![锁优点和缺点](static/image/锁的优点和缺点.png)
 
 锁的级别分为：无锁 --- 偏向锁 --- 轻量级锁 --- 重量级锁 锁只能升级但不能降级（GC除外），这种只能升级不能降级的策略是为了提高获得锁和释放锁的效率
 
@@ -31,7 +31,7 @@
 
 # 轻量级锁（CAS）
 
-[CAS](./CompareAndSwap.md)
+[CAS](CompareAndSwap.md)
 
     线程在执行同步块之前，JVM会先在当前线程的栈帧中创建用于存储锁记录的空间，
     并将对象头的MarkWord复制到锁记录中，即Displaced Mark Word。

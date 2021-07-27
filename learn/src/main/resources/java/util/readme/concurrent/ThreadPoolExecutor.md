@@ -1,19 +1,19 @@
 # 线程池
 
-- [对象布局](./ObjectLayout.md)
-- [轻量级锁CAS](./CompareAndSwap.md)
-- [volatile关键字](./Volatile.md)
-- [synchronized关键字](./Synchronized.md)
-- [锁升级](./LockUpgrade.md)
-- [locks](../../../../../../src/java.base/share/classes/java/util/concurrent/locks)
-    - [AQS](./AQS.md)
-    - [ReentrantLock](./ReentrantLock.md)
-- [ThreadPoolExecutor](./ThreadPoolExecutor.md)
+- [对象布局](ObjectLayout.md)
+- [轻量级锁CAS](CompareAndSwap.md)
+- [volatile关键字](Volatile.md)
+- [synchronized关键字](Synchronized.md)
+- [锁升级](LockUpgrade.md)
+- [locks](../../../../../../../../src/java.base/share/classes/java/util/concurrent/locks)
+    - [AQS](AQS.md)
+    - [ReentrantLock](ReentrantLock.md)
+- [ThreadPoolExecutor](ThreadPoolExecutor.md)
 
 ## 资料
 
-- [测试用例](../../../../test/java/cool/intent/java/util/concurrent/ThreadPoolExecutorTest.java)
-- [源码](../../../../../../src/java.base/share/classes/java/util/concurrent/ThreadPoolExecutor.java)
+- [测试用例](../../../../../../test/java/cool/intent/java/util/concurrent/ThreadPoolExecutorTest.java)
+- [源码](../../../../../../../../src/java.base/share/classes/java/util/concurrent/ThreadPoolExecutor.java)
 
 ## 翻译
 
@@ -63,7 +63,7 @@ Queuing（等待队列）： 任何BlockingQueue都可以用来传输和保存�
 
 因此，现在的线程池执行顺序如下：
 
-![线程池执行顺序](./static/image/线程池执行顺序.png)
+![线程池执行顺序](static/image/线程池执行顺序.png)
 
 排队的策略有三种：
 

@@ -1,9 +1,9 @@
 # ArrayList
 
-- [ArrayList源码](../../../../../src/java.base/share/classes/java/util/ArrayList.java)
-- [ArrayList测试用例](../../../test/java/cool/intent/java/util/ArrayListTest.java)
+- [ArrayList源码](../../../../../../../src/java.base/share/classes/java/util/ArrayList.java)
+- [ArrayList测试用例](../../../../../test/java/cool/intent/java/util/ArrayListTest.java)
 
-![ArrayList类图](./static/image/arraylist_class_diagram.png)
+![ArrayList类图](static/image/arraylist_class_diagram.png)
 
 ## 问题
 

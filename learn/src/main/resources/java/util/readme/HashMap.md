@@ -1,9 +1,9 @@
 # HashMap
 
-- [HashMap源码](../../../../../src/java.base/share/classes/java/util/HashMap.java)
-- [HashMap测试用例](../../../test/java/cool/intent/java/util/HashMapTest.java)
+- [HashMap源码](../../../../../../../src/java.base/share/classes/java/util/HashMap.java)
+- [HashMap测试用例](../../../../../test/java/cool/intent/java/util/HashMapTest.java)
 
-![HashMap类图](./static/image/hashmap/hashmap_class_diagram.png)
+![HashMap类图](static/image/hashmap/hashmap_class_diagram.png)
 
 # 问题
 
@@ -195,4 +195,4 @@ class Test {
 
 # 引用
 
-![运算符](./static/image/运算符.jpeg)
+![运算符](static/image/运算符.jpeg)
