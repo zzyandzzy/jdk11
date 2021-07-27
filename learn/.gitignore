@@ -27,6 +27,5 @@ hs_err_pid*
 .DS_Store
 *.iml
 .gradle/
-gradle/
 gradlew
 gradlew.bat
