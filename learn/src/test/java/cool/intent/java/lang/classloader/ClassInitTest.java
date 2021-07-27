@@ -17,9 +17,16 @@ public class ClassInitTest {
 
     static {
         num = 2;
+        num2 = 2;
+        System.out.println(num);
+        // 无法引用后面的变量
+//        System.out.println(num2);
     }
+
+    private static int num2 = 1;
 
     public static void main(String[] args) {
         System.out.println(ClassInitTest.num);
+        System.out.println(ClassInitTest.num2);
     }
 }
