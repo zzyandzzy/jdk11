@@ -7,32 +7,7 @@
 
 - 加载的类信息存放中一块称为方法区的内存空间。除了类的信息外，方法区中还会存放运行时常量池信息，可能还包括字符串字面量和数字常量等信息。
 
-```puml
-@startuml
-
-skinparam state {
-  StartColor Green
-}
-
-state Loading ##[dotted]green : 加载
-state Initialization ##[dotted]green : 初始化
-
-[*] -right-> Loading
-
-
-state Linking链接 #aliceblue;line:blue;line.dotted;text:blue {
-  state Verification #aliceblue;line:blue;line.dotted;text:blue : 验证
-  state Preparation #aliceblue;line:blue;line.dotted;text:blue : 准备
-  state Resolution #aliceblue;line:blue;line.dotted;text:blue : 解析
-  Loading -right-> Verification
-  Verification -right-> Preparation
-  Preparation -right-> Resolution
-}
-
-Resolution -right-> Initialization
-
-@enduml
-```
+![ClassLoader流程](static/image/ClassLoader/ClassLoader_Seq.svg)
 
 安装插件 `jclasslib Bytecode Viewer`
 
@@ -77,29 +52,27 @@ JDK`1.8`中的`Ext ClassLoader`已经被`PlatformClassLoader`取代
 如果`BootStrap ClassLoader`都不加载，则由`App ClassLoader`加载，一层一层的委托。就像生活中有一个苹果🍎，尊老爱幼你询问你妈妈要吃苹果吗?
 你妈妈询问你奶奶要吃苹果吗?如果你奶奶不吃则苹果到你妈妈手里🍏，如果你妈妈觉得这个苹果有点酸，则给你吃(亲儿子)。
 
-```puml
-@startuml
+![ClassLoader双亲委派机制](static/image/ClassLoader/ClassLoader_LoadClass.svg)
 
-skinparam state {
-  StartColor Green
-}
+### 类的主动加载和被动加载
 
-state CustomClassLoader ##[dotted]green : 自定义类加载器 
-state AppClassLoader ##[dotted]green : 系统类加载器 
-state PlatformClassLoader ##[dotted]green : 平台类加载器 
-state BootStrapClassLoader ##[dotted]green : 引导类加载器
-note right of BootStrapClassLoader : "父类加载失败由子类处理" 
-note right of AppClassLoader : "父类加载失败由子类处理" 
-note right of PlatformClassLoader : "父类加载失败由子类处理" 
-note right of CustomClassLoader : "父类加载失败由子类处理" 
+主动加载有:
 
-[*] -up-> CustomClassLoader : 加载类
-CustomClassLoader -up->  AppClassLoader : 向上委托
-AppClassLoader -up->  PlatformClassLoader : 向上委托
-PlatformClassLoader -up->  BootStrapClassLoader : 向上委托
+1. 创建类的实例
 
-@enduml
-```
+2. 访问某个类或接口的静态变量或者对该静态变量赋值
+
+3. 调用类的静态方法
+
+4. 反射(比如: Class.forName("java.lang.String"))
+
+5. 初始化一个类的子类
+
+6. Java虚拟机启动时被标明为启动类的类
+
+7. JDK 7开始提供的动态语言支持
+
+除了以上7种情况，其他使用Java类的方式都被看作是对**类的被动使用**，都**不会导致类的初始化**
 
 ## 🔗链接(Linking)
 

@@ -1,0 +1,24 @@
+@startuml
+
+skinparam state {
+  StartColor Green
+}
+
+state Loading ##[dotted]green : 加载
+state Initialization ##[dotted]green : 初始化
+
+[*] -right-> Loading
+
+
+state Linking链接 #aliceblue;line:blue;line.dotted;text:blue {
+  state Verification #aliceblue;line:blue;line.dotted;text:blue : 验证
+  state Preparation #aliceblue;line:blue;line.dotted;text:blue : 准备
+  state Resolution #aliceblue;line:blue;line.dotted;text:blue : 解析
+  Loading -right-> Verification
+  Verification -right-> Preparation
+  Preparation -right-> Resolution
+}
+
+Resolution -right-> Initialization
+
+@enduml
