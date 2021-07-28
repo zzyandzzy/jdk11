@@ -60,6 +60,47 @@ Resolution -right-> Initialization
 
 - 从加密文件中国读取，典型的防Class文件被反编译的保护措施
 
+`BootStrap ClassLoader`是用C++编写的，用来加载Java核心类库。
+
+JDK`1.8`中的`Ext ClassLoader`已经被`PlatformClassLoader`取代
+
+`PlatformClassLoader`和`AppClassLoader`都被定义在`ClassLoaders`里面
+
+- [ClassLoaders](../../../../../../../src/java.base/share/classes/jdk/internal/loader/ClassLoaders.java)
+
+
+### 双亲委派机制
+
+`BootStrap ClassLoader`负责加载`java`、`javax`、`sun`等包下的class
+
+双亲委派机制就是当加载一个类的时候，并不由当前的ClassLoader进行加载，而是向上委托父类加载，直到`BootStrap ClassLoader`，
+如果`BootStrap ClassLoader`都不加载，则由`App ClassLoader`加载，一层一层的委托。就像生活中有一个苹果🍎，尊老爱幼你询问你妈妈要吃苹果吗?
+你妈妈询问你奶奶要吃苹果吗?如果你奶奶不吃则苹果到你妈妈手里🍏，如果你妈妈觉得这个苹果有点酸，则给你吃(亲儿子)。
+
+```puml
+@startuml
+
+skinparam state {
+  StartColor Green
+}
+
+state CustomClassLoader ##[dotted]green : 自定义类加载器 
+state AppClassLoader ##[dotted]green : 系统类加载器 
+state PlatformClassLoader ##[dotted]green : 平台类加载器 
+state BootStrapClassLoader ##[dotted]green : 引导类加载器
+note right of BootStrapClassLoader : "父类加载失败由子类处理" 
+note right of AppClassLoader : "父类加载失败由子类处理" 
+note right of PlatformClassLoader : "父类加载失败由子类处理" 
+note right of CustomClassLoader : "父类加载失败由子类处理" 
+
+[*] -up-> CustomClassLoader : 加载类
+CustomClassLoader -up->  AppClassLoader : 向上委托
+AppClassLoader -up->  PlatformClassLoader : 向上委托
+PlatformClassLoader -up->  BootStrapClassLoader : 向上委托
+
+@enduml
+```
+
 ## 🔗链接(Linking)
 
 ### 验证🔒(Verification)
