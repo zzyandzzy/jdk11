@@ -11,9 +11,9 @@ ClassFile -right-> ClassLoaderSubsystem #666666;line.bold
 node "运行时数据区\nRuntime Data Area" as RuntimeDataArea {
     rectangle "方法区\nMethod Area" as MethodArea #red;text:white
     rectangle "程序计数器\nProgram Counter Register" as PC #aaaaaa;text:black
-    rectangle "本地方法栈\nNative Method Stack" as NativeMethodStack #aaaaaa;text:black
+    stack "本地方法栈\nNative Method Stack" as NativeMethodStack #aaaaaa;text:black
     rectangle "堆\nHeap" as Heap #red;text:white
-    rectangle "虚拟机栈\nJava Virtual Machine Stack" as Stack #aaaaaa;text:black
+    stack "虚拟机栈\nJava Virtual Machine Stack" as Stack #aaaaaa;text:black
 }
 
 ClassLoaderSubsystem -down-> RuntimeDataArea #666666;line.bold

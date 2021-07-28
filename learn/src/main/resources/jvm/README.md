@@ -1,5 +1,8 @@
 # JVM
 
+- [程序计数器](readme/JVMPC.md)
+- [虚拟机栈](readme/JVMStack.md)
+
 ## 结构图
 
 ![JVM结构图](readme/static/image/JVM_Struct-HotSpot_JVM_Architecture.svg)
