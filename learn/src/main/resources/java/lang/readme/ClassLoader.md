@@ -52,7 +52,7 @@ JDK`1.8`中的`Ext ClassLoader`已经被`PlatformClassLoader`取代
 如果`BootStrap ClassLoader`都不加载，则由`App ClassLoader`加载，一层一层的委托。就像生活中有一个苹果🍎，尊老爱幼你询问你妈妈要吃苹果吗?
 你妈妈询问你奶奶要吃苹果吗?如果你奶奶不吃则苹果到你妈妈手里🍏，如果你妈妈觉得这个苹果有点酸，则给你吃(亲儿子)。
 
-![ClassLoader双亲委派机制](static/image/ClassLoader/ClassLoader_LoadClass.png)
+<img src="static/image/ClassLoader/ClassLoader_LoadClass.png" alt="ClassLoader双亲委派机制" style="zoom:50%;" />
 
 ### 类的主动加载和被动加载
 
