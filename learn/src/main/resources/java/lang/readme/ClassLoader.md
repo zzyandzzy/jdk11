@@ -7,7 +7,7 @@
 
 - 加载的类信息存放中一块称为方法区的内存空间。除了类的信息外，方法区中还会存放运行时常量池信息，可能还包括字符串字面量和数字常量等信息。
 
-![ClassLoader流程](static/uml/ClassLoader/ClassLoader_Seq.svg)
+![ClassLoader流程](static/image/ClassLoader/ClassLoader_Seq.png)
 
 安装插件 `jclasslib Bytecode Viewer`
 
@@ -52,7 +52,7 @@ JDK`1.8`中的`Ext ClassLoader`已经被`PlatformClassLoader`取代
 如果`BootStrap ClassLoader`都不加载，则由`App ClassLoader`加载，一层一层的委托。就像生活中有一个苹果🍎，尊老爱幼你询问你妈妈要吃苹果吗?
 你妈妈询问你奶奶要吃苹果吗?如果你奶奶不吃则苹果到你妈妈手里🍏，如果你妈妈觉得这个苹果有点酸，则给你吃(亲儿子)。
 
-![ClassLoader双亲委派机制](static/uml/ClassLoader/ClassLoader_LoadClass.svg)
+![ClassLoader双亲委派机制](static/image/ClassLoader/ClassLoader_LoadClass.png)
 
 ### 类的主动加载和被动加载
 
