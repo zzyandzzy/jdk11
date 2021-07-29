@@ -2,6 +2,7 @@
 
 - [程序计数器](readme/JVMPC.md)
 - [虚拟机栈](readme/JVMStack.md)
+- [GC](readme/GC.md)
 
 ## 结构图
 
