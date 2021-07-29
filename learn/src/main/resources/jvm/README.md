@@ -13,4 +13,4 @@
 - 每个线程: 独立包括程序计数器、栈、本地方法栈
 - 线程间共享: 堆、堆外内存(永久代或元空间、代码缓存)
 
-![JVM线程模型](readme/static/image/JVM_Thread_Struct-Jvm_Thread_Struct.svg)
+![JVM线程模型](readme/static/uml/JVM_Thread_Struct.svg)
