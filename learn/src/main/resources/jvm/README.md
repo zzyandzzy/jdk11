@@ -6,7 +6,7 @@
 
 ## 结构图
 
-![JVM结构图](readme/static/image/JVM_Struct-HotSpot_JVM_Architecture.svg)
+![JVM结构图](readme/static/uml/JVM_Struct-HotSpot_JVM_Architecture.svg)
 
 ## 线程模型
 
