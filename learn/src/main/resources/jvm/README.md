@@ -6,11 +6,11 @@
 
 ## 结构图
 
-<img src="readme/static/image/JVM_Struct.png" alt="JVM结构图" style="zoom:50%;" />
+![JVM结构图](readme/static/uml/JVM_Struct.svg)
 
 ## 线程模型
 
 - 每个线程: 独立包括程序计数器、栈、本地方法栈
 - 线程间共享: 堆、堆外内存(永久代或元空间、代码缓存)
 
-<img src="readme/static/image/JVM_Thread_Struct.png" alt="JVM线程模型" style="zoom:50%;" />
+![JVM线程模型](readme/static/uml/JVM_Thread_Struct.svg)
