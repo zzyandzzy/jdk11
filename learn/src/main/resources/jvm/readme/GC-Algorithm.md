@@ -1,5 +1,16 @@
 # GC 垃圾回收器
 
+## System.gc()
+
+在默认情况下，`System.gc()`或者`Runtime.getRuntime().gc()`的调用，会显式的触发**Full GC**，同时对老年代和新生代进行回收，尝试释放被丢弃对象占用的内存。
+
+然而`System.gc()`调用附带一个免责声明，无法保证对垃圾回收器的调用（调用时间不确定）。
+
+JVM实现者可以通过`System.gc()`调用来决定JVM的GC行为。而一般情况下，垃圾回收应该是自动进行的，**无须手动触发，否则就太过于麻烦了**。在一些特殊情况下，如我们正在编写一个性能基准，我们可以在运行之间调用`System.gc()`。
+
+[测试用例](../../../../../src/test/java/cool/intent/jvm/SystemGCTest.java)
+[测试用例2](../../../../../src/test/java/cool/intent/jvm/LocalVarGC.java)
+
 ## 标记阶段
 
 ### 引用计数算法
