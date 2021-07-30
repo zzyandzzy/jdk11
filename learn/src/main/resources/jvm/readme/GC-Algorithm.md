@@ -2,14 +2,14 @@
 
 ## System.gc()
 
+[测试用例](../../../../../src/test/java/cool/intent/jvm/SystemGCTest.java)
+[测试用例2](../../../../../src/test/java/cool/intent/jvm/LocalVarGC.java)
+
 在默认情况下，`System.gc()`或者`Runtime.getRuntime().gc()`的调用，会显式的触发**Full GC**，同时对老年代和新生代进行回收，尝试释放被丢弃对象占用的内存。
 
 然而`System.gc()`调用附带一个免责声明，无法保证对垃圾回收器的调用（调用时间不确定）。
 
 JVM实现者可以通过`System.gc()`调用来决定JVM的GC行为。而一般情况下，垃圾回收应该是自动进行的，**无须手动触发，否则就太过于麻烦了**。在一些特殊情况下，如我们正在编写一个性能基准，我们可以在运行之间调用`System.gc()`。
-
-[测试用例](../../../../../src/test/java/cool/intent/jvm/SystemGCTest.java)
-[测试用例2](../../../../../src/test/java/cool/intent/jvm/LocalVarGC.java)
 
 ## 内存溢出（OOM）
 
@@ -51,6 +51,28 @@ javadoc中对OutOfMemoryError的解释是，**没有空闲内存，并且垃圾�
 1. 单例模式
    单例的生命周期和应用程序是一样长的，所以单例程序中，如果特有对外部对象的引用的话，那么这个外部对象是不能被回收的，则会导致内存泄漏的产生。
 2. 一些提供close的资源未关闭导致内存泄漏数据库连接 (dataSourse.geCconnection()），网络连接(Socket)和IO连接必须手动close，否则是不能被回收的。
+
+## Stop The World
+
+[测试用例](../../../../../src/test/java/cool/intent/jvm/StopTheWorldTest.java)
+
+Stop-The-World，简称STW，指的是GC事件发生过程中，会产生应用程序的停顿。**停顿产生时整个应用程序线程都会被暂停，没有任何响应**，有点像卡死的感觉，这个停顿称为STW。 
+
+可达性分析算法中枚举根节点（GC Roots）会导致所有Java执行线程停顿。
+
+- 分析工作必须在一个能确保一致性的快照中进行
+- 一致性指整个分析期间整个执行系统看起来像被冻结在某个时间点上
+- **如果出现分析过程中对象引用关系还在不断变化，则分析结果的准确性无法保证**
+
+被STW中断的应用程序线程会在完成GC之后恢复，频繁中断会让用户感觉像是网速不快造成电影卡带一样，所以我们需要减少STW的发生。
+
+STW事件和采用哪款GC无关，所有的GC都有这个事件。
+
+哪怕是G1也不能完全避免Stop-The-World 情况发生，只能说垃圾回收器越来越优秀，回收效率越来越高，尽可能地缩短了暂停时间。
+
+STW是JVM在**后台自动发起和自动完成的**。在用户不可见的情况下，把用户正常的工作线程全部停掉。
+
+开发中不要用`System.gc()`会导致Stop-The-World（Full GC）的发生。
 
 ## 标记阶段
 
