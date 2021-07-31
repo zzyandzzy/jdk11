@@ -3,6 +3,7 @@
 ## System.gc()
 
 [测试用例](../../../../../src/test/java/cool/intent/jvm/SystemGCTest.java)
+
 [测试用例2](../../../../../src/test/java/cool/intent/jvm/LocalVarGC.java)
 
 在默认情况下，`System.gc()`或者`Runtime.getRuntime().gc()`的调用，会显式的触发**Full GC**，同时对老年代和新生代进行回收，尝试释放被丢弃对象占用的内存。
